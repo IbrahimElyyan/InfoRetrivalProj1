@@ -1,4 +1,5 @@
 import os
+from nltk.corpus import stopwords
 import unittest
 import reader, tokenizer, lowercaser, porter_stemmer, stopword_remover
 
@@ -47,9 +48,18 @@ class TestReutersProcessing(unittest.TestCase):
     
 
     def test_remove_stopwords(self):
-        # Add test cases for stopword removal
-        # Ensure the output without stopwords matches the expected documents
-        pass
+        stop_words = set(stopwords.words('english'))
+
+        test_sample = {
+            'This is a sample.': 'sample.',
+            'The slow white bear': 'slow white bear',
+            'I have a dog': 'dog'
+        }
+
+        for sample, expected_answer in test_sample.items():
+            cleaned_text = stopword_remover.remove_stopwords([sample])
+            self.assertEqual(cleaned_text, [expected_answer])
+
 
 if __name__ == '__main__':
     unittest.main()
