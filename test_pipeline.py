@@ -29,9 +29,11 @@ class TestReutersProcessing(unittest.TestCase):
         self.assertEqual(tokenized_sample[1], expected_answer2)
 
     def test_lowercase_reuters21578(self):
-        # Add test cases for lowercasing
-        # Ensure the lowercased output matches the expected lowercased documents
-        pass
+        testing_sample = ["This text will be LOWERCASED."]
+        lowercased_sample = lowercaser.lowercase_reuters21578(testing_sample)
+        self.assertEqual(len(lowercased_sample), len(testing_sample))
+        expected_answer = ["this text will be lowercased."]
+        self.assertEqual(lowercased_sample, expected_answer)
 
     def porter_stem_reuters21578(self):
         # Add test cases for applying Porter Stemmer
