@@ -34,5 +34,3 @@ for i in range(5):
     with open(f'No-stopword-output{i + 1}.txt', 'w') as file:
         file.write(stopword_free_documents)
 
-# print("STARTS HERE!!!!!!!!!!!!!!!!!!")
-# print(documents)

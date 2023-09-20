@@ -2,8 +2,6 @@ import os
 import unittest
 import reader, tokenizer, lowercaser, porter_stemmer, stopword_remover
 
-# Replace 'your_module' with the actual module where your functions are defined.
-
 class TestReutersProcessing(unittest.TestCase):
 
     def test_read_reuters21578(self):
@@ -36,9 +34,17 @@ class TestReutersProcessing(unittest.TestCase):
         self.assertEqual(lowercased_sample, expected_answer)
 
     def porter_stem_reuters21578(self):
-        # Add test cases for applying Porter Stemmer
-        # Ensure the stemmed output matches the expected stemmed documents
-        pass
+        test_sample = {
+            'running': 'run',
+            'calmly': 'calmli',
+            'bats': 'bat',
+            'walks': 'walk',
+            'aptly': 'aptli'
+        }
+        for sample, expected_answer in test_sample.items():
+            stemmed_word = porter_stemmer.porter_stem_reuters21578([sample])[0]
+            self.assertEqual(stemmed_word, expected_answer)
+    
 
     def test_remove_stopwords(self):
         # Add test cases for stopword removal
