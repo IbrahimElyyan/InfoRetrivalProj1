@@ -12,7 +12,6 @@ def remove_stopwords(docs):
     return clear_docs
 
 # Enumerate the stopword list you used in a separate file called ‘Stopwords-used-for-output’
-
 stopword_list = set(stopwords.words('english'))
 with open('Stopwords-used-for-output.txt', 'w') as file:
     for word in stopword_list:

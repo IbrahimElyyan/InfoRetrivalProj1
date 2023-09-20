@@ -13,6 +13,11 @@ lowercased_documents = lowercaser.lowercase_reuters21578(documents)
 stemmed_documents = porter_stemmer.porter_stem_reuters21578(documents)
 stopword_free_documents = stopword_remover.remove_stopwords(documents)
 
+# Writing the reader output files
+for i in range(5):
+    with open(f'Reader-output{i + 1}.txt', 'w') as file:
+        file.write(documents[i])
+
 # Writing the tokenized output files
 for i in range(5):
     with open(f'Tokenizer-output{i + 1}.txt', 'w') as file:
@@ -32,5 +37,5 @@ for i in range(5):
 # Writing stopwprd removed output files
 for i in range(5):
     with open(f'No-stopword-output{i + 1}.txt', 'w') as file:
-        file.write(stopword_free_documents)
+        file.write(stopword_free_documents[i])
 
