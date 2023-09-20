@@ -11,20 +11,22 @@ class TestReutersProcessing(unittest.TestCase):
         os.makedirs(test_path)
         with open(os.path.join(test_path, 'reut_test_reader.txt'), 'w') as f:
             f.write('This is a sample text to test reader function.')
-
-        # Call the function and check the results
+            
         documents = reader.read_reuters21578(test_path)
         self.assertEqual(len(documents), 1)
         self.assertEqual(documents[0], 'This is a sample text to test reader function.')
-
-        # Clean up the mock corpus directory
+        # Clean so no need to keep deleting the test_text file everytime you test
         os.remove(os.path.join(test_path, 'reut_test_reader.txt'))
         os.rmdir(test_path)
         
     def test_tokenize_reuters21578(self):
-        # Add test cases for tokenization
-        # Ensure the tokenized output matches the expected tokenized documents
-        pass
+        testing_sample = ["This text will be tokenized.", "Hope this works:)"]
+        tokenized_sample = tokenizer.tokenize_reuters21578(testing_sample)
+        self.assertEqual(len(tokenized_sample), len(testing_sample))
+        expected_answer1 = ['This', 'text', 'will', 'be', 'tokenized', '.']
+        self.assertEqual(tokenized_sample[0], expected_answer1)
+        expected_answer2 = ['Hope', 'this', 'works', ':', ')']
+        self.assertEqual(tokenized_sample[1], expected_answer2)
 
     def test_lowercase_reuters21578(self):
         # Add test cases for lowercasing
