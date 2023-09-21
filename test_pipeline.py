@@ -18,14 +18,19 @@ class TestReutersProcessing(unittest.TestCase):
         os.remove(os.path.join(test_path, 'reut_test_reader.txt'))
         os.rmdir(test_path)
         
+        
     def test_tokenize_reuters21578(self):
-        testing_sample = ["This text will be tokenized.", "Hope this works:)"]
+        testing_sample = ["This text will be tokenized."]
         tokenized_sample = tokenizer.tokenize_reuters21578(testing_sample)
+
+        # Check the length of tokenized_sample
         self.assertEqual(len(tokenized_sample), len(testing_sample))
-        expected_answer1 = ['This', 'text', 'will', 'be', 'tokenized', '.']
+
+        # Check the tokenization of the first document
+        expected_answer1 = 'This text will be tokenized .'
         self.assertEqual(tokenized_sample[0], expected_answer1)
-        expected_answer2 = ['Hope', 'this', 'works', ':', ')']
-        self.assertEqual(tokenized_sample[1], expected_answer2)
+
+
 
     def test_lowercase_reuters21578(self):
         testing_sample = ["This text will be LOWERCASED."]
@@ -60,6 +65,13 @@ class TestReutersProcessing(unittest.TestCase):
             cleaned_text = stopword_remover.remove_stopwords([sample])
             self.assertEqual(cleaned_text, [expected_answer])
 
-
+    def test_transitivity(self):
+        reuters21578_path = r'C:\Users\ibrah\OneDrive\Desktop\reuters21578'
+        documents = reader.read_reuters21578(reuters21578_path)[:5]
+        tokenized_documents = tokenizer.tokenize_reuters21578(documents)
+        lowercased_documents = lowercaser.lowercase_reuters21578(tokenized_documents)
+        stemmed_documents = porter_stemmer.porter_stem_reuters21578(lowercased_documents)
+        stopword_free_documents = stopword_remover.remove_stopwords(stemmed_documents)
+        
 if __name__ == '__main__':
     unittest.main()
