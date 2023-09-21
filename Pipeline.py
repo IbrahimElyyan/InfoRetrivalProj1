@@ -17,12 +17,11 @@ stopword_free_documents = stopword_remover.remove_stopwords(documents)
 for i in range(5):
     with open(f'Reader-output{i + 1}.txt', 'w') as file:
         file.write(documents[i])
-
-# Writing the tokenized output files
+        
 for i in range(5):
     with open(f'Tokenizer-output{i + 1}.txt', 'w') as file:
-        file.write('\n'.join(tokenized_documents[i]))
-
+        file.write('\n'.join(tokenized_documents[i].split()))
+        
 
 # Writing lowercased output files
 for i in range(5):
