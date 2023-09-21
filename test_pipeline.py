@@ -66,7 +66,7 @@ class TestReutersProcessing(unittest.TestCase):
             self.assertEqual(cleaned_text, [expected_answer])
 
     def test_transitivity(self):
-        reuters21578_path = r'C:\Users\ibrah\OneDrive\Desktop\reuters21578'
+        reuters21578_path = r'your path to\reuters21578'
         documents = reader.read_reuters21578(reuters21578_path)[:5]
         tokenized_documents = tokenizer.tokenize_reuters21578(documents)
         lowercased_documents = lowercaser.lowercase_reuters21578(tokenized_documents)
