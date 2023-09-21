@@ -5,7 +5,7 @@ import porter_stemmer
 import stopword_remover
 
 # Path to the directory where the corpus is stored
-reuters21578_path = r'C:\Users\ibrah\OneDrive\Desktop\reuters21578'
+reuters21578_path = r'your own path to\reuters21578'
 
 documents = reader.read_reuters21578(reuters21578_path)[:5]
 tokenized_documents = tokenizer.tokenize_reuters21578(documents)
